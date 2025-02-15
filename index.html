@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi novio? 🏳️‍🌈</title>
+    <link rel="icon" type="image/png" href="https://images.vexels.com/media/users/3/216360/isolated/preview/977370876a64c9dccfe43f06e1cfa0d5-doodle-de-corazon-rojo.png">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffccf2;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 350px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-size: 24px;
+        }
+
+        .buttons {
+            margin: 20px 0;
+        }
+
+        .yes-button, .no-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .yes-button {
+            background-color: #ff4d4d;
+            color: white;
+            font-weight: bold;
+        }
+
+        .no-button {
+            background-color: #666;
+            color: white;
+        }
+
+        .gif_container img {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        /* Animación de los corazones */
+        .heart, .crying-face {
+            position: fixed;
+            font-size: 25px;
+            top: 100vh;
+            animation: floatUp 3s linear infinite;
+        }
+
+        .heart {
+            color: red;
+        }
+
+        .crying-face {
+            color: blue;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="question">¿QUIERES SER MI NOVIO? 💖</h1>
+        <div class="buttons">
+            <button id="yes-button" class="yes-button" onclick="handleYesClick()">SÍ</button>
+            <button id="no-button" class="no-button" onclick="handleNoClick()">NO</button>
+        </div>
+        <div class="gif_container">
+            <img id="gif" src="https://i.pinimg.com/originals/e8/28/dd/e828dda00c1fa277b8d59b568d56658e.gif" alt="Cute GIF">
+        </div>
+    </div>
+
+    <audio id="love-song" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        let noClickCount = 0;
+        const questions = [
+            "¿Estás seguro? 🥺",
+            "¿No te gustan los chicos tiernos? 😢",
+            "¿De verdad quieres romper mi corazón? 💔",
+            "¿Lo pensarías de nuevo? 🥹",
+            "Voy a llorar... 😭",
+            "Te daré un chocolate si dices que sí 🍫🥺",
+            "Si dices que no, te mando mil memes hasta que aceptes 😈",
+            "¡Tienes prohibido decir que no! 😡💕",
+            "Mi mamá ya sabe que somos novios 🫣",
+            "¿Y si te digo que ya mandé las invitaciones de boda? 👀💍",
+            "DI QUE SHI O VENDO A TU GATO 😾",
+            "¡Ya no puedes decir que no! 😈💕"
+        ];
+
+        function handleYesClick() {
+            document.getElementById("gif").src = "https://i.pinimg.com/originals/18/fa/ff/18faff3437607bd1aad67debad367d22.gif";
+            document.getElementById("question").textContent = "¡Sabía que dirías que sí! 💖🌈";
+
+            // Eliminar el botón de NO
+            let noButton = document.getElementById("no-button");
+            if (noButton) {
+                noButton.remove();
+            }
+
+            // Reproducir música romántica
+            let audio = document.getElementById("love-song");
+            audio.play().catch(error => console.log("Autoplay bloqueado, toca la pantalla para activarlo"));
+
+            // Generar MUCHOS corazones flotantes
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function handleNoClick() {
+            if (noClickCount < questions.length) {
+                document.getElementById("question").textContent = questions[noClickCount];
+                noClickCount++;
+            } else {
+                document.getElementById("question").textContent = "¡Ya no puedes decir que no! 😈💕";
+                document.getElementById("no-button").style.display = "none";
+            }
+
+            // Aumentar el tamaño del botón "SÍ"
+            let yesButton = document.getElementById("yes-button");
+            let currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize + 5) + "px";
+            yesButton.style.padding = (parseInt(yesButton.style.padding) + 2) + "px";
+
+            // Generar caritas llorando
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createCryingFace, i * 200);
+            }
+        }
+
+        function createHeart() {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            document.body.appendChild(heart);
+
+            let xPos = Math.random() * window.innerWidth;
+            let size = Math.random() * 30 + 10;
+
+            heart.style.left = xPos + "px";
+            heart.style.fontSize = size + "px";
+
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        function createCryingFace() {
+            let cryingFace = document.createElement("div");
+            cryingFace.classList.add("crying-face");
+            cryingFace.innerHTML = "😢";
+            document.body.appendChild(cryingFace);
+
+            let xPos = Math.random() * window.innerWidth;
+            let size = Math.random() * 30 + 10;
+
+            cryingFace.style.left = xPos + "px";
+            cryingFace.style.fontSize = size + "px";
+
+            setTimeout(() => cryingFace.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
