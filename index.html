@@ -65,7 +65,7 @@
             border-radius: 10px;
         }
 
-        /* Animación de los corazones */
+        /* Animaciones */
         .heart, .crying-face {
             position: fixed;
             font-size: 25px;
@@ -109,6 +109,10 @@
         <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
     </audio>
 
+    <audio id="sad-song">
+        <source src="https://www.bensound.com/bensound-music/bensound-sadday.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         let noClickCount = 0;
         const questions = [
@@ -130,17 +134,17 @@
             document.getElementById("gif").src = "https://i.pinimg.com/originals/18/fa/ff/18faff3437607bd1aad67debad367d22.gif";
             document.getElementById("question").textContent = "¡Sabía que dirías que sí! 💖🌈";
 
-            // Eliminar el botón de NO
-            let noButton = document.getElementById("no-button");
-            if (noButton) {
-                noButton.remove();
-            }
+            // Eliminar botones
+            document.getElementById("yes-button").remove();
+            document.getElementById("no-button").remove();
 
-            // Reproducir música romántica
-            let audio = document.getElementById("love-song");
-            audio.play().catch(error => console.log("Autoplay bloqueado, toca la pantalla para activarlo"));
+            // Detener música triste y reproducir romántica
+            let sadAudio = document.getElementById("sad-song");
+            let loveAudio = document.getElementById("love-song");
+            sadAudio.pause();
+            loveAudio.play().catch(error => console.log("Autoplay bloqueado"));
 
-            // Generar MUCHOS corazones flotantes
+            // Generar corazones flotantes
             for (let i = 0; i < 50; i++) {
                 setTimeout(createHeart, i * 100);
             }
@@ -165,6 +169,12 @@
             for (let i = 0; i < 5; i++) {
                 setTimeout(createCryingFace, i * 200);
             }
+
+            // Detener música romántica y reproducir triste
+            let loveAudio = document.getElementById("love-song");
+            let sadAudio = document.getElementById("sad-song");
+            loveAudio.pause();
+            sadAudio.play().catch(error => console.log("Autoplay bloqueado"));
         }
 
         function createHeart() {
