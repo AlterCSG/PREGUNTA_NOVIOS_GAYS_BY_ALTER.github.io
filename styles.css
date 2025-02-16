@@ -1,0 +1,8 @@
+.message {
+    font-style: italic;  /* Texto en cursiva */
+    color: #ff4d4d;        /* Color gris oscuro */
+    font-size: 30px;    /* Tamaño de fuente */
+    margin-bottom: 10px; /* Espaciado debajo del mensaje */
+    text-align: center; /* Centrar el texto */
+    font-weight: bold;
+}
