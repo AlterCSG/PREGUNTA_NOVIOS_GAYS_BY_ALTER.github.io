@@ -3,211 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Quieres ser mi novio? 🏳️‍🌈</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="https://images.vexels.com/media/users/3/216360/isolated/preview/977370876a64c9dccfe43f06e1cfa0d5-doodle-de-corazon-rojo.png">
+    <title>Para Osmar</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
         body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #fdf2e9, #f1e1d0);
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            color: #333;
+            position: relative;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffccf2;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
+            flex-direction: column;
         }
 
         .container {
-            background: white;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            max-width: 350px;
-            position: relative;
-            z-index: 2;
         }
 
-        h1 {
-            color: #ff4d4d;
-            font-size: 24px;
+        .dedication {
+            font-family: 'Dancing Script', cursive;
+            font-size: 40px;
+            font-weight: bold;
+            color: #5a3d2e;
+            text-shadow: 3px 3px 10px rgba(90, 60, 40, 0.8);
+            margin-bottom: 20px;
         }
 
-        .buttons {
-            margin: 20px 0;
-        }
-
-        .yes-button, .no-button {
-            padding: 10px 20px;
-            font-size: 16px;
+        button {
+            background: #d6ad6b;
+            color: #5a3d2e;
             border: none;
-            border-radius: 5px;
+            padding: 14px 30px;
+            font-size: 20px;
+            font-weight: bold;
             cursor: pointer;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
         }
 
-        .yes-button {
-            background-color: #ff4d4d;
-            color: white;
-            font-weight: bold;
+        button:hover {
+            background: #d6a35d;
+            transform: scale(1.05);
         }
 
-        .no-button {
-            background-color: #666;
-            color: white;
+        button:active {
+            transform: scale(0.95);
         }
 
-        .gif_container img {
-            width: 200px;
-            height: auto;
+        .hidden {
+            display: none;
+        }
+
+        #messages {
+            text-align: center;
+            width: 80%;
             margin-top: 20px;
-            border-radius: 10px;
         }
 
-        /* Animaciones */
-        .heart, .crying-face {
-            position: fixed;
-            font-size: 25px;
-            top: 100vh;
-            animation: floatUp 3s linear infinite;
+        #messages p {
+            font-size: 26px;
+            font-weight: bold;
+            font-family: 'Dancing Script', cursive;
+            color: #5a3d2e;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #love-letter {
+            background: rgba(90, 60, 40, 0.9);
+            color: white;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            line-height: 1.6;
+            transition: transform 0.3s ease;
+        }
+
+        #love-letter h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .writing {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #5a3d2e;
+            animation: typing 3s steps(40, end) forwards, blink 0.8s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
 
         .heart {
-            color: red;
+            position: fixed;
+            font-size: 22px;
+            color: #d6ad6b;
+            animation: float 5s linear infinite;
         }
 
-        .crying-face {
-            color: blue;
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
+        /* Responsive */
+        @media (max-width: 768px) {
+            button {
+                font-size: 18px;
+                padding: 12px 20px;
             }
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0;
+
+            #love-letter {
+                font-size: 18px;
+                width: 90%;
+            }
+
+            #messages p {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 10px;
             }
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <p class="message">CREADO POR ANDRESITO UwU</p>
-        <h1 id="question">¿QUIERES SER MI NOVIO? 💖</h1>
-        <div class="buttons">
-            <button id="yes-button" class="yes-button" onclick="handleYesClick()">SÍ</button>
-            <button id="no-button" class="no-button" onclick="handleNoClick()">NO</button>
+        <div class="dedication">De Andresito para su novio Osmar</div>
+
+        <button id="open-gift">Abrir regalo</button>
+
+        <div id="messages" class="hidden">
+            <p id="message" class="writing"></p>
         </div>
-        <div class="gif_container">
-            <img id="gif" src="https://i.pinimg.com/originals/e8/28/dd/e828dda00c1fa277b8d59b568d56658e.gif" alt="Cute GIF">
+
+        <div id="love-letter" class="hidden">
+            <h2>Para ti, mi amor</h2>
+            <p>
+                Cada día a tu lado es un sueño hecho realidad.  
+                Eres la luz que ilumina mi vida, la razón por la que sonrío.  
+                Te amo con cada fibra de mi ser y siempre estaré aquí para ti.  
+            </p>
+            <p>Con todo mi amor,</p>
+            <p>Andresito</p>
         </div>
     </div>
 
-    <audio id="love-song" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-    </audio>
-
-    <audio id="sad-song">
-        <source src="https://www.bensound.com/bensound-music/bensound-sadday.mp3" type="audio/mpeg">
-    </audio>
-
     <script>
-        let noClickCount = 0;
-        const questions = [
-            "¿Estás seguro? 🥺",
-            "¿No te gustan los chicos tiernos? 😢",
-            "¿De verdad quieres romper mi corazón? 💔",
-            "¿Lo pensarías de nuevo? 🥹",
-            "Voy a llorar... 😭",
-            "Te daré un chocolate si dices que sí 🍫🥺",
-            "Si dices que no, te mando mil memes hasta que aceptes 😈",
-            "¡Tienes prohibido decir que no! 😡💕",
-            "Mi mamá ya sabe que somos novios 🫣",
-            "¿Y si te digo que ya mandé las invitaciones de boda? 👀💍",
-            "DI QUE SHI O VENDO A TU GATO 😾",
-            "¡Ya no puedes decir que no! 😈💕"
-        ];
+        document.getElementById("open-gift").addEventListener("click", function() {
+            let button = document.getElementById("open-gift");
+            button.style.display = "none";
+            showMessages();
+        });
 
-        function handleYesClick() {
-            document.getElementById("gif").src = "https://i.pinimg.com/originals/18/fa/ff/18faff3437607bd1aad67debad367d22.gif";
-            document.getElementById("question").textContent = "¡Sabía que dirías que sí! 💖🌈";
+        function showMessages() {
+            let messages = [
+                "Eres mi sol en los días grises", 
+                "Lo mejor que paso en mi vida", 
+                "Te amo con todo mi corazón", 
+                "Sueño con una vida jutos",
+                "Mi vida sin ti no sería lo mismo", 
+                "Eres la razón de mi felicidad"
+            ];
+            let messageIndex = 0;
+            let messageElement = document.getElementById("message");
+            let messagesDiv = document.getElementById("messages");
 
-            // Eliminar botones
-            document.getElementById("yes-button").remove();
-            document.getElementById("no-button").remove();
+            messagesDiv.classList.remove("hidden");
 
-            // Detener música triste y reproducir romántica
-            let sadAudio = document.getElementById("sad-song");
-            let loveAudio = document.getElementById("love-song");
-            sadAudio.pause();
-            loveAudio.play().catch(error => console.log("Autoplay bloqueado"));
-
-            // Generar corazones flotantes
-            for (let i = 0; i < 50; i++) {
-                setTimeout(createHeart, i * 100);
-            }
-        }
-
-        function handleNoClick() {
-            if (noClickCount < questions.length) {
-                document.getElementById("question").textContent = questions[noClickCount];
-                noClickCount++;
-            } else {
-                document.getElementById("question").textContent = "¡Ya no puedes decir que no! 😈💕";
-                document.getElementById("no-button").style.display = "none";
+            function showMessage() {
+                if (messageIndex < messages.length) {
+                    messageElement.textContent = messages[messageIndex];
+                    messageIndex++;
+                    setTimeout(showMessage, 2500);
+                } else {
+                    messagesDiv.classList.add("hidden");
+                    document.getElementById("love-letter").classList.remove("hidden");
+                }
             }
 
-            // Aumentar el tamaño del botón "SÍ"
-            let yesButton = document.getElementById("yes-button");
-            let currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
-            yesButton.style.fontSize = (currentSize + 5) + "px";
-            yesButton.style.padding = (parseInt(yesButton.style.padding) + 2) + "px";
-
-            // Generar caritas llorando
-            for (let i = 0; i < 5; i++) {
-                setTimeout(createCryingFace, i * 200);
-            }
-
-            // Detener música romántica y reproducir triste
-            let loveAudio = document.getElementById("love-song");
-            let sadAudio = document.getElementById("sad-song");
-            loveAudio.pause();
-            sadAudio.play().catch(error => console.log("Autoplay bloqueado"));
-        }
-
-        function createHeart() {
-            let heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            document.body.appendChild(heart);
-
-            let xPos = Math.random() * window.innerWidth;
-            let size = Math.random() * 30 + 10;
-
-            heart.style.left = xPos + "px";
-            heart.style.fontSize = size + "px";
-
-            setTimeout(() => heart.remove(), 3000);
-        }
-
-        function createCryingFace() {
-            let cryingFace = document.createElement("div");
-            cryingFace.classList.add("crying-face");
-            cryingFace.innerHTML = "😢";
-            document.body.appendChild(cryingFace);
-
-            let xPos = Math.random() * window.innerWidth;
-            let size = Math.random() * 30 + 10;
-
-            cryingFace.style.left = xPos + "px";
-            cryingFace.style.fontSize = size + "px";
-
-            setTimeout(() => cryingFace.remove(), 3000);
+            showMessage();
         }
     </script>
+
 </body>
 </html>
